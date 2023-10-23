@@ -8,14 +8,14 @@ class BookAppointment
   def initialize(params)
     @schedule = Schedule.find(params[:schedule_id])
     @patient  = Patient.find(params[:patient_id])
-    @start    = params[:start]
-    @finish   = params[:finish]
+    @start    = params[:start].to_datetime
+    @finish   = params[:finish].to_datetime
   end
 
   # mandatory: define a #call method. its return value will be available
   #            through #result
   def call
-    if slot_available?
+    if schedule_available? && slot_available?
       appointment = Appointment.create(patient: @patient,
                                        schedule: @schedule,
                                        start: @start,
@@ -37,11 +37,20 @@ class BookAppointment
   private
 
   def slot_available?
-     # require 'pry'; binding.pry
     booked = Appointment.where(start: @start...@finish)
-                        .or(Appointment.where(finish: @start..@finish))
+      .or(Appointment.where(finish: (@start + 1.minute)..@finish))
                         .where(schedule: @schedule)
 
     booked.blank?
+  end
+
+  def schedule_available?
+    require 'pry'; binding.pry
+    s1 = @schedule.start.strftime('%H%M')
+    s2 = @start.strftime('%H%M')
+    f1 = @schedule.finish.strftime('%H%M')
+    f2 = @finish.strftime('%H%M')
+
+    (s2 >= s1 && s2 < f1) && (f2 > s1 && f2 <= f1)
   end
 end
