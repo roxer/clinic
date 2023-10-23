@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :doctors do
-        resources :schedules
+        resources :schedules do
+          collection do
+            match :availability, via: [:get]
+          end
+        end
       end
 
       resources :appointments
