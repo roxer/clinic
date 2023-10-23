@@ -19,9 +19,13 @@ Steps are necessary to get the application up and running.
 
 `$ rails server`
 
-* API endpoint to list doctor's availability
+* API endpoint to list doctor's schedules
 
 `$ http http://localhost:3000/api/v1/doctors/1/schedules`
+
+* API endpoint to list doctor's availability
+
+`$ http://localhost:3000/api/v1/doctors/1/schedules/availability?start=2023-10-10&finish=2023-11-20`
 
 * API endpoint to book an appointment
 
