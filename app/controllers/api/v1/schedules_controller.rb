@@ -30,7 +30,7 @@ class Api::V1::SchedulesController < ApplicationController
 
       app = Appointment.where(start: day.all_day, schedule: s)
 
-      availabilities << { schedule: s, appointments: app }
+      availabilities << { date: day, schedule: s, appointments: app }
     end
 
     render json: availabilities.to_json
