@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Steps are necessary to get the application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.2.2
 
-* System dependencies
+`$ rbenv install 3.2.2`
 
-* Configuration
+`$ brew install httpie`
+
+`$ bundle install`
 
 * Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+`$ rails db:setup`
 
 * Deployment instructions
 
-* ...
+`$ rails server`
+
+* API endpoint to list doctor's availability
+
+`$ http http://localhost:3000/api/v1/doctors/1/schedules`
+
+* API endpoint to book an appointment
+
+```
+$ printf '{
+    "schedule_id": 1,
+    "start": "2023-10-20 9:00",
+    "finish": "2023-10-20 10:00",
+    "patient_id": 1
+}'| http  --follow --timeout 3600 POST 'http://localhost:3000/api/v1/appointments' \
+ Content-Type:'application/json'
+```

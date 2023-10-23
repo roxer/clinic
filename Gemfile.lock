@@ -79,6 +79,11 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.1.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
+    byebug (11.1.3)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -89,6 +94,8 @@ GEM
     drb (2.1.1)
       ruby2_keywords
     erubi (1.12.0)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -106,11 +113,12 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.4.1)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
@@ -120,12 +128,16 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4-aarch64-linux)
-      racc (~> 1.4)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.4-x86_64-linux)
-      racc (~> 1.4)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.10.1)
+      byebug (~> 11.0)
+      pry (>= 0.13, < 0.15)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     psych (5.1.1.1)
       stringio
     puma (6.4.0)
@@ -174,14 +186,14 @@ GEM
     reline (0.3.9)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
-    sqlite3 (1.6.7-aarch64-linux)
+    simple_command (1.0.1)
     sqlite3 (1.6.7-arm64-darwin)
-    sqlite3 (1.6.7-x86_64-linux)
     stringio (3.0.8)
-    thor (1.2.2)
+    thor (1.3.0)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uniform_notifier (1.16.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -189,17 +201,19 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
   bootsnap
+  bullet
   debug
-  puma (>= 5.0)
+  faker
+  pry-byebug
+  pry-rails
+  puma (>= 6.0)
   rails (~> 7.1.1)
+  simple_command
   sqlite3 (~> 1.4)
-  tzinfo-data
 
 RUBY VERSION
    ruby 3.2.2p53
