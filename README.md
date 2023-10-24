@@ -19,6 +19,13 @@ Steps are necessary to get the application up and running.
 
 `$ rails server`
 
+* Deployment with Docker (for MacOS with production ENV)
+
+```
+$ docker buildx build --platform=linux/amd64 --load -t clinic .
+$ docker run -p 3000:3000 clinic
+```
+
 * API endpoint to list doctor's schedules
 
 `$ http http://localhost:3000/api/v1/doctors/1/schedules`
